@@ -1,0 +1,37 @@
+{
+  "sources": [
+    {
+      "git": {
+        "name": ".",
+        "remote": "https://github.com/googleapis/nodejs-api-gateway.git",
+        "sha": "62e61a2b510959d2c282ec12ecb87702014d6bed"
+      }
+    },
+    {
+      "git": {
+        "name": "googleapis",
+        "remote": "https://github.com/googleapis/googleapis.git",
+        "sha": "8f117308d5bb55816953a0d6ad1a7d27a69a7d3f",
+        "internalRef": "361084441"
+      }
+    },
+    {
+      "git": {
+        "name": "synthtool",
+        "remote": "https://github.com/googleapis/synthtool.git",
+        "sha": "6056faa36b3ab941a56f71eab8164e78af998844"
+      }
+    }
+  ],
+  "destinations": [
+    {
+      "client": {
+        "source": "googleapis",
+        "apiName": "apigateway",
+        "apiVersion": "v1",
+        "language": "nodejs",
+        "generator": "bazel"
+      }
+    }
+  ]
+}
