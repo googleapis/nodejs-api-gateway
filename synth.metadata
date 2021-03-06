@@ -4,7 +4,7 @@
       "git": {
         "name": ".",
         "remote": "git@github.com:googleapis/nodejs-api-gateway.git",
-        "sha": "36c545b0e4a4363d745dca4abe7f49dfad652721"
+        "sha": "012bdb6e11a5ede50548245d74698279540e164b"
       }
     },
     {
