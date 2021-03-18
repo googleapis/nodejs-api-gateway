@@ -1,13 +1,14 @@
 {
-  "name": "api-gateway",
-  "name_pretty": "API Gateway",
-  "product_documentation": "https://cloud.google.com/api-gateway/docs",
   "client_documentation": "https://googleapis.dev/nodejs/api-gateway/latest",
-  "issue_tracker": "https://github.com/googleapis/nodejs-api-gateway/issues",
-  "release_level": "beta",
-  "language": "nodejs",
-  "repo": "googleapis/nodejs-api-gateway",
-  "distribution_name": "@google-cloud/api-gateway",
   "api_id": "apigateway.googleapis.com",
-  "requires_billing": true
+  "distribution_name": "@google-cloud/api-gateway",
+  "release_level": "beta",
+  "default_version": "v1",
+  "language": "nodejs",
+  "name_pretty": "API Gateway",
+  "repo": "googleapis/nodejs-api-gateway",
+  "product_documentation": "https://cloud.google.com/api-gateway/docs",
+  "requires_billing": true,
+  "name": "api-gateway",
+  "issue_tracker": "https://github.com/googleapis/nodejs-api-gateway/issues"
 }
