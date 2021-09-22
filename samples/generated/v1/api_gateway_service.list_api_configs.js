@@ -12,19 +12,34 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
 'use strict';
 
-function main(name) {
-  // [START apigateway_get_gateway_sample]
+function main(parent) {
+  // [START apigateway_list_api_configs_sample]
   /**
    * TODO(developer): Uncomment these variables before running the sample.
    */
   /**
-   *  Required. Resource name of the form:
-   *  `projects/* /locations/* /gateways/*`
+   *  Required. Parent resource of the API Config, of the form:
+   *  `projects/* /locations/global/apis/*`
    */
-  // const name = 'abc123'
+  // const parent = 'abc123'
+  /**
+   *  Page size.
+   */
+  // const pageSize = 1234
+  /**
+   *  Page token.
+   */
+  // const pageToken = 'abc123'
+  /**
+   *  Filter.
+   */
+  // const filter = 'abc123'
+  /**
+   *  Order by parameters.
+   */
+  // const orderBy = 'abc123'
 
   // Imports the Apigateway library
   const {ApiGatewayServiceClient} = require('@google-cloud/api-gateway').v1;
@@ -32,19 +47,21 @@ function main(name) {
   // Instantiates a client
   const apigatewayClient = new ApiGatewayServiceClient();
 
-  async function getGateway() {
+  async function listApiConfigs() {
     // Construct request
     const request = {
-      name,
+      parent,
     };
 
     // Run request
-    const response = await apigatewayClient.getGateway(request);
-    console.log(response);
+    const iterable = await apigatewayClient.listApiConfigsAsync(request);
+    for await (const response of iterable) {
+      console.log(response);
+    }
   }
 
-  getGateway();
-  // [END apigateway_get_gateway_sample]
+  listApiConfigs();
+  // [END apigateway_list_api_configs_sample]
 }
 
 process.on('unhandledRejection', err => {

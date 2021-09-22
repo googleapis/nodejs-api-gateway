@@ -12,28 +12,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
 'use strict';
 
-function main(parent, apiId, api) {
-  // [START apigateway_create_api_sample]
+function main(name) {
+  // [START apigateway_delete_api_config_sample]
   /**
    * TODO(developer): Uncomment these variables before running the sample.
    */
   /**
-   *  Required. Parent resource of the API, of the form:
-   *  `projects/* /locations/global`
+   *  Required. Resource name of the form:
+   *  `projects/* /locations/global/apis/* /configs/*`
    */
-  // const parent = 'abc123'
-  /**
-   *  Required. Identifier to assign to the API. Must be unique within scope of
-   *  the parent resource.
-   */
-  // const apiId = 'abc123'
-  /**
-   *  Required. API resource.
-   */
-  // const api = ''
+  // const name = 'abc123'
 
   // Imports the Apigateway library
   const {ApiGatewayServiceClient} = require('@google-cloud/api-gateway').v1;
@@ -41,22 +31,20 @@ function main(parent, apiId, api) {
   // Instantiates a client
   const apigatewayClient = new ApiGatewayServiceClient();
 
-  async function createApi() {
+  async function deleteApiConfig() {
     // Construct request
     const request = {
-      parent,
-      apiId,
-      api,
+      name,
     };
 
     // Run request
-    const [operation] = await apigatewayClient.createApi(request);
+    const [operation] = await apigatewayClient.deleteApiConfig(request);
     const [response] = await operation.promise();
     console.log(response);
   }
 
-  createApi();
-  // [END apigateway_create_api_sample]
+  deleteApiConfig();
+  // [END apigateway_delete_api_config_sample]
 }
 
 process.on('unhandledRejection', err => {

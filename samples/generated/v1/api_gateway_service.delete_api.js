@@ -12,26 +12,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
 'use strict';
 
-function main(gateway) {
-  // [START apigateway_update_gateway_sample]
+function main(name) {
+  // [START apigateway_delete_api_sample]
   /**
    * TODO(developer): Uncomment these variables before running the sample.
    */
   /**
-   *  Field mask is used to specify the fields to be overwritten in the
-   *  Gateway resource by the update.
-   *  The fields specified in the update_mask are relative to the resource, not
-   *  the full request. A field will be overwritten if it is in the mask. If the
-   *  user does not provide a mask then all fields will be overwritten.
+   *  Required. Resource name of the form:
+   *  `projects/* /locations/global/apis/*`
    */
-  // const updateMask = ''
-  /**
-   *  Required. Gateway resource.
-   */
-  // const gateway = ''
+  // const name = 'abc123'
 
   // Imports the Apigateway library
   const {ApiGatewayServiceClient} = require('@google-cloud/api-gateway').v1;
@@ -39,20 +31,20 @@ function main(gateway) {
   // Instantiates a client
   const apigatewayClient = new ApiGatewayServiceClient();
 
-  async function updateGateway() {
+  async function deleteApi() {
     // Construct request
     const request = {
-      gateway,
+      name,
     };
 
     // Run request
-    const [operation] = await apigatewayClient.updateGateway(request);
+    const [operation] = await apigatewayClient.deleteApi(request);
     const [response] = await operation.promise();
     console.log(response);
   }
 
-  updateGateway();
-  // [END apigateway_update_gateway_sample]
+  deleteApi();
+  // [END apigateway_delete_api_sample]
 }
 
 process.on('unhandledRejection', err => {

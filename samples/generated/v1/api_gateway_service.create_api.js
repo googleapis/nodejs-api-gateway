@@ -12,19 +12,27 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
 'use strict';
 
-function main(name) {
-  // [START apigateway_get_api_sample]
+function main(parent, apiId, api) {
+  // [START apigateway_create_api_sample]
   /**
    * TODO(developer): Uncomment these variables before running the sample.
    */
   /**
-   *  Required. Resource name of the form:
-   *  `projects/* /locations/global/apis/*`
+   *  Required. Parent resource of the API, of the form:
+   *  `projects/* /locations/global`
    */
-  // const name = 'abc123'
+  // const parent = 'abc123'
+  /**
+   *  Required. Identifier to assign to the API. Must be unique within scope of
+   *  the parent resource.
+   */
+  // const apiId = 'abc123'
+  /**
+   *  Required. API resource.
+   */
+  // const api = ''
 
   // Imports the Apigateway library
   const {ApiGatewayServiceClient} = require('@google-cloud/api-gateway').v1;
@@ -32,19 +40,22 @@ function main(name) {
   // Instantiates a client
   const apigatewayClient = new ApiGatewayServiceClient();
 
-  async function getApi() {
+  async function createApi() {
     // Construct request
     const request = {
-      name,
+      parent,
+      apiId,
+      api,
     };
 
     // Run request
-    const response = await apigatewayClient.getApi(request);
+    const [operation] = await apigatewayClient.createApi(request);
+    const [response] = await operation.promise();
     console.log(response);
   }
 
-  getApi();
-  // [END apigateway_get_api_sample]
+  createApi();
+  // [END apigateway_create_api_sample]
 }
 
 process.on('unhandledRejection', err => {

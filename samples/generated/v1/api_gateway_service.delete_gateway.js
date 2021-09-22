@@ -12,24 +12,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
 'use strict';
 
 function main(name) {
-  // [START apigateway_get_api_config_sample]
+  // [START apigateway_delete_gateway_sample]
   /**
    * TODO(developer): Uncomment these variables before running the sample.
    */
   /**
    *  Required. Resource name of the form:
-   *  `projects/* /locations/global/apis/* /configs/*`
+   *  `projects/* /locations/* /gateways/*`
    */
   // const name = 'abc123'
-  /**
-   *  Specifies which fields of the API Config are returned in the response.
-   *  Defaults to `BASIC` view.
-   */
-  // const view = ''
 
   // Imports the Apigateway library
   const {ApiGatewayServiceClient} = require('@google-cloud/api-gateway').v1;
@@ -37,19 +31,20 @@ function main(name) {
   // Instantiates a client
   const apigatewayClient = new ApiGatewayServiceClient();
 
-  async function getApiConfig() {
+  async function deleteGateway() {
     // Construct request
     const request = {
       name,
     };
 
     // Run request
-    const response = await apigatewayClient.getApiConfig(request);
+    const [operation] = await apigatewayClient.deleteGateway(request);
+    const [response] = await operation.promise();
     console.log(response);
   }
 
-  getApiConfig();
-  // [END apigateway_get_api_config_sample]
+  deleteGateway();
+  // [END apigateway_delete_gateway_sample]
 }
 
 process.on('unhandledRejection', err => {

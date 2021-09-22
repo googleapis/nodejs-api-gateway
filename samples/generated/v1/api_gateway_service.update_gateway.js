@@ -12,35 +12,25 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
 'use strict';
 
-function main(parent) {
-  // [START apigateway_list_api_configs_sample]
+function main(gateway) {
+  // [START apigateway_update_gateway_sample]
   /**
    * TODO(developer): Uncomment these variables before running the sample.
    */
   /**
-   *  Required. Parent resource of the API Config, of the form:
-   *  `projects/* /locations/global/apis/*`
+   *  Field mask is used to specify the fields to be overwritten in the
+   *  Gateway resource by the update.
+   *  The fields specified in the update_mask are relative to the resource, not
+   *  the full request. A field will be overwritten if it is in the mask. If the
+   *  user does not provide a mask then all fields will be overwritten.
    */
-  // const parent = 'abc123'
+  // const updateMask = ''
   /**
-   *  Page size.
+   *  Required. Gateway resource.
    */
-  // const pageSize = 1234
-  /**
-   *  Page token.
-   */
-  // const pageToken = 'abc123'
-  /**
-   *  Filter.
-   */
-  // const filter = 'abc123'
-  /**
-   *  Order by parameters.
-   */
-  // const orderBy = 'abc123'
+  // const gateway = ''
 
   // Imports the Apigateway library
   const {ApiGatewayServiceClient} = require('@google-cloud/api-gateway').v1;
@@ -48,21 +38,20 @@ function main(parent) {
   // Instantiates a client
   const apigatewayClient = new ApiGatewayServiceClient();
 
-  async function listApiConfigs() {
+  async function updateGateway() {
     // Construct request
     const request = {
-      parent,
+      gateway,
     };
 
     // Run request
-    const iterable = await apigatewayClient.listApiConfigsAsync(request);
-    for await (const response of iterable) {
-        console.log(response);
-    }
+    const [operation] = await apigatewayClient.updateGateway(request);
+    const [response] = await operation.promise();
+    console.log(response);
   }
 
-  listApiConfigs();
-  // [END apigateway_list_api_configs_sample]
+  updateGateway();
+  // [END apigateway_update_gateway_sample]
 }
 
 process.on('unhandledRejection', err => {
