@@ -12,35 +12,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
 'use strict';
 
-function main(parent) {
-  // [START apigateway_v1_generated_ApiGatewayService_ListGateways_async]
+function main(name) {
+  // [START apigateway_v1_generated_ApiGatewayService_DeleteGateway_async]
   /**
    * TODO(developer): Uncomment these variables before running the sample.
    */
   /**
-   *  Required. Parent resource of the Gateway, of the form:
-   *  `projects/* /locations/*`
+   *  Required. Resource name of the form:
+   *  `projects/* /locations/* /gateways/*`
    */
-  // const parent = 'abc123'
-  /**
-   *  Page size.
-   */
-  // const pageSize = 1234
-  /**
-   *  Page token.
-   */
-  // const pageToken = 'abc123'
-  /**
-   *  Filter.
-   */
-  // const filter = 'abc123'
-  /**
-   *  Order by parameters.
-   */
-  // const orderBy = 'abc123'
+  // const name = 'abc123'
 
   // Imports the Apigateway library
   const {ApiGatewayServiceClient} = require('@google-cloud/api-gateway').v1;
@@ -48,21 +31,20 @@ function main(parent) {
   // Instantiates a client
   const apigatewayClient = new ApiGatewayServiceClient();
 
-  async function listGateways() {
+  async function deleteGateway() {
     // Construct request
     const request = {
-      parent,
+      name,
     };
 
     // Run request
-    const iterable = await apigatewayClient.listGatewaysAsync(request);
-    for await (const response of iterable) {
-        console.log(response);
-    }
+    const [operation] = await apigatewayClient.deleteGateway(request);
+    const [response] = await operation.promise();
+    console.log(response);
   }
 
-  listGateways();
-  // [END apigateway_v1_generated_ApiGatewayService_ListGateways_async]
+  deleteGateway();
+  // [END apigateway_v1_generated_ApiGatewayService_DeleteGateway_async]
 }
 
 process.on('unhandledRejection', err => {

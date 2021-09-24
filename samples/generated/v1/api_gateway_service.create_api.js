@@ -12,26 +12,27 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
 'use strict';
 
-function main(gateway) {
-  // [START apigateway_v1_generated_ApiGatewayService_UpdateGateway_async]
+function main(parent, apiId, api) {
+  // [START apigateway_v1_generated_ApiGatewayService_CreateApi_async]
   /**
    * TODO(developer): Uncomment these variables before running the sample.
    */
   /**
-   *  Field mask is used to specify the fields to be overwritten in the
-   *  Gateway resource by the update.
-   *  The fields specified in the update_mask are relative to the resource, not
-   *  the full request. A field will be overwritten if it is in the mask. If the
-   *  user does not provide a mask then all fields will be overwritten.
+   *  Required. Parent resource of the API, of the form:
+   *  `projects/* /locations/global`
    */
-  // const updateMask = ''
+  // const parent = 'abc123'
   /**
-   *  Required. Gateway resource.
+   *  Required. Identifier to assign to the API. Must be unique within scope of
+   *  the parent resource.
    */
-  // const gateway = ''
+  // const apiId = 'abc123'
+  /**
+   *  Required. API resource.
+   */
+  // const api = ''
 
   // Imports the Apigateway library
   const {ApiGatewayServiceClient} = require('@google-cloud/api-gateway').v1;
@@ -39,20 +40,22 @@ function main(gateway) {
   // Instantiates a client
   const apigatewayClient = new ApiGatewayServiceClient();
 
-  async function updateGateway() {
+  async function createApi() {
     // Construct request
     const request = {
-      gateway,
+      parent,
+      apiId,
+      api,
     };
 
     // Run request
-    const [operation] = await apigatewayClient.updateGateway(request);
+    const [operation] = await apigatewayClient.createApi(request);
     const [response] = await operation.promise();
     console.log(response);
   }
 
-  updateGateway();
-  // [END apigateway_v1_generated_ApiGatewayService_UpdateGateway_async]
+  createApi();
+  // [END apigateway_v1_generated_ApiGatewayService_CreateApi_async]
 }
 
 process.on('unhandledRejection', err => {

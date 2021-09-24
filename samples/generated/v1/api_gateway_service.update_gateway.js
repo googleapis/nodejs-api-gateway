@@ -12,19 +12,25 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
 'use strict';
 
-function main(name) {
-  // [START apigateway_v1_generated_ApiGatewayService_GetGateway_async]
+function main(gateway) {
+  // [START apigateway_v1_generated_ApiGatewayService_UpdateGateway_async]
   /**
    * TODO(developer): Uncomment these variables before running the sample.
    */
   /**
-   *  Required. Resource name of the form:
-   *  `projects/* /locations/* /gateways/*`
+   *  Field mask is used to specify the fields to be overwritten in the
+   *  Gateway resource by the update.
+   *  The fields specified in the update_mask are relative to the resource, not
+   *  the full request. A field will be overwritten if it is in the mask. If the
+   *  user does not provide a mask then all fields will be overwritten.
    */
-  // const name = 'abc123'
+  // const updateMask = ''
+  /**
+   *  Required. Gateway resource.
+   */
+  // const gateway = ''
 
   // Imports the Apigateway library
   const {ApiGatewayServiceClient} = require('@google-cloud/api-gateway').v1;
@@ -32,19 +38,20 @@ function main(name) {
   // Instantiates a client
   const apigatewayClient = new ApiGatewayServiceClient();
 
-  async function getGateway() {
+  async function updateGateway() {
     // Construct request
     const request = {
-      name,
+      gateway,
     };
 
     // Run request
-    const response = await apigatewayClient.getGateway(request);
+    const [operation] = await apigatewayClient.updateGateway(request);
+    const [response] = await operation.promise();
     console.log(response);
   }
 
-  getGateway();
-  // [END apigateway_v1_generated_ApiGatewayService_GetGateway_async]
+  updateGateway();
+  // [END apigateway_v1_generated_ApiGatewayService_UpdateGateway_async]
 }
 
 process.on('unhandledRejection', err => {

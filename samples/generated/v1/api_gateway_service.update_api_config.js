@@ -12,26 +12,23 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
 'use strict';
 
-function main(parent, apiConfigId, apiConfig) {
-  // [START apigateway_v1_generated_ApiGatewayService_CreateApiConfig_async]
+function main(apiConfig) {
+  // [START apigateway_v1_generated_ApiGatewayService_UpdateApiConfig_async]
   /**
    * TODO(developer): Uncomment these variables before running the sample.
    */
   /**
-   *  Required. Parent resource of the API Config, of the form:
-   *  `projects/* /locations/global/apis/*`
+   *  Field mask is used to specify the fields to be overwritten in the
+   *  ApiConfig resource by the update.
+   *  The fields specified in the update_mask are relative to the resource, not
+   *  the full request. A field will be overwritten if it is in the mask. If the
+   *  user does not provide a mask then all fields will be overwritten.
    */
-  // const parent = 'abc123'
+  // const updateMask = ''
   /**
-   *  Required. Identifier to assign to the API Config. Must be unique within scope of
-   *  the parent resource.
-   */
-  // const apiConfigId = 'abc123'
-  /**
-   *  Required. API resource.
+   *  Required. API Config resource.
    */
   // const apiConfig = ''
 
@@ -41,22 +38,20 @@ function main(parent, apiConfigId, apiConfig) {
   // Instantiates a client
   const apigatewayClient = new ApiGatewayServiceClient();
 
-  async function createApiConfig() {
+  async function updateApiConfig() {
     // Construct request
     const request = {
-      parent,
-      apiConfigId,
       apiConfig,
     };
 
     // Run request
-    const [operation] = await apigatewayClient.createApiConfig(request);
+    const [operation] = await apigatewayClient.updateApiConfig(request);
     const [response] = await operation.promise();
     console.log(response);
   }
 
-  createApiConfig();
-  // [END apigateway_v1_generated_ApiGatewayService_CreateApiConfig_async]
+  updateApiConfig();
+  // [END apigateway_v1_generated_ApiGatewayService_UpdateApiConfig_async]
 }
 
 process.on('unhandledRejection', err => {

@@ -12,28 +12,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
 'use strict';
 
-function main(parent, gatewayId, gateway) {
-  // [START apigateway_v1_generated_ApiGatewayService_CreateGateway_async]
+function main(name) {
+  // [START apigateway_v1_generated_ApiGatewayService_DeleteApi_async]
   /**
    * TODO(developer): Uncomment these variables before running the sample.
    */
   /**
-   *  Required. Parent resource of the Gateway, of the form:
-   *  `projects/* /locations/*`
+   *  Required. Resource name of the form:
+   *  `projects/* /locations/global/apis/*`
    */
-  // const parent = 'abc123'
-  /**
-   *  Required. Identifier to assign to the Gateway. Must be unique within scope of
-   *  the parent resource.
-   */
-  // const gatewayId = 'abc123'
-  /**
-   *  Required. Gateway resource.
-   */
-  // const gateway = ''
+  // const name = 'abc123'
 
   // Imports the Apigateway library
   const {ApiGatewayServiceClient} = require('@google-cloud/api-gateway').v1;
@@ -41,22 +31,20 @@ function main(parent, gatewayId, gateway) {
   // Instantiates a client
   const apigatewayClient = new ApiGatewayServiceClient();
 
-  async function createGateway() {
+  async function deleteApi() {
     // Construct request
     const request = {
-      parent,
-      gatewayId,
-      gateway,
+      name,
     };
 
     // Run request
-    const [operation] = await apigatewayClient.createGateway(request);
+    const [operation] = await apigatewayClient.deleteApi(request);
     const [response] = await operation.promise();
     console.log(response);
   }
 
-  createGateway();
-  // [END apigateway_v1_generated_ApiGatewayService_CreateGateway_async]
+  deleteApi();
+  // [END apigateway_v1_generated_ApiGatewayService_DeleteApi_async]
 }
 
 process.on('unhandledRejection', err => {

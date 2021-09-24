@@ -12,17 +12,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
 'use strict';
 
 function main(name) {
-  // [START apigateway_v1_generated_ApiGatewayService_DeleteGateway_async]
+  // [START apigateway_v1_generated_ApiGatewayService_DeleteApiConfig_async]
   /**
    * TODO(developer): Uncomment these variables before running the sample.
    */
   /**
    *  Required. Resource name of the form:
-   *  `projects/* /locations/* /gateways/*`
+   *  `projects/* /locations/global/apis/* /configs/*`
    */
   // const name = 'abc123'
 
@@ -32,20 +31,20 @@ function main(name) {
   // Instantiates a client
   const apigatewayClient = new ApiGatewayServiceClient();
 
-  async function deleteGateway() {
+  async function deleteApiConfig() {
     // Construct request
     const request = {
       name,
     };
 
     // Run request
-    const [operation] = await apigatewayClient.deleteGateway(request);
+    const [operation] = await apigatewayClient.deleteApiConfig(request);
     const [response] = await operation.promise();
     console.log(response);
   }
 
-  deleteGateway();
-  // [END apigateway_v1_generated_ApiGatewayService_DeleteGateway_async]
+  deleteApiConfig();
+  // [END apigateway_v1_generated_ApiGatewayService_DeleteApiConfig_async]
 }
 
 process.on('unhandledRejection', err => {
