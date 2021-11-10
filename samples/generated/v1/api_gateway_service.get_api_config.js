@@ -12,28 +12,23 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
 'use strict';
 
-function main(parent, apiConfigId, apiConfig) {
-  // [START apigateway_v1_generated_ApiGatewayService_CreateApiConfig_async]
+function main(name) {
+  // [START apigateway_v1_generated_ApiGatewayService_GetApiConfig_async]
   /**
    * TODO(developer): Uncomment these variables before running the sample.
    */
   /**
-   *  Required. Parent resource of the API Config, of the form:
-   *  `projects/* /locations/global/apis/*`
+   *  Required. Resource name of the form:
+   *  `projects/* /locations/global/apis/* /configs/*`
    */
-  // const parent = 'abc123'
+  // const name = 'abc123'
   /**
-   *  Required. Identifier to assign to the API Config. Must be unique within scope of
-   *  the parent resource.
+   *  Specifies which fields of the API Config are returned in the response.
+   *  Defaults to `BASIC` view.
    */
-  // const apiConfigId = 'abc123'
-  /**
-   *  Required. API resource.
-   */
-  // const apiConfig = {}
+  // const view = {}
 
   // Imports the Apigateway library
   const {ApiGatewayServiceClient} = require('@google-cloud/api-gateway').v1;
@@ -41,22 +36,19 @@ function main(parent, apiConfigId, apiConfig) {
   // Instantiates a client
   const apigatewayClient = new ApiGatewayServiceClient();
 
-  async function callCreateApiConfig() {
+  async function callGetApiConfig() {
     // Construct request
     const request = {
-      parent,
-      apiConfigId,
-      apiConfig,
+      name,
     };
 
     // Run request
-    const [operation] = await apigatewayClient.createApiConfig(request);
-    const [response] = await operation.promise();
+    const response = await apigatewayClient.getApiConfig(request);
     console.log(response);
   }
 
-  callCreateApiConfig();
-  // [END apigateway_v1_generated_ApiGatewayService_CreateApiConfig_async]
+  callGetApiConfig();
+  // [END apigateway_v1_generated_ApiGatewayService_GetApiConfig_async]
 }
 
 process.on('unhandledRejection', err => {

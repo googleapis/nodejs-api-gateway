@@ -12,26 +12,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
 'use strict';
 
-function main(apiConfig) {
-  // [START apigateway_v1_generated_ApiGatewayService_UpdateApiConfig_async]
+function main(name) {
+  // [START apigateway_v1_generated_ApiGatewayService_DeleteApi_async]
   /**
    * TODO(developer): Uncomment these variables before running the sample.
    */
   /**
-   *  Field mask is used to specify the fields to be overwritten in the
-   *  ApiConfig resource by the update.
-   *  The fields specified in the update_mask are relative to the resource, not
-   *  the full request. A field will be overwritten if it is in the mask. If the
-   *  user does not provide a mask then all fields will be overwritten.
+   *  Required. Resource name of the form:
+   *  `projects/* /locations/global/apis/*`
    */
-  // const updateMask = {}
-  /**
-   *  Required. API Config resource.
-   */
-  // const apiConfig = {}
+  // const name = 'abc123'
 
   // Imports the Apigateway library
   const {ApiGatewayServiceClient} = require('@google-cloud/api-gateway').v1;
@@ -39,20 +31,20 @@ function main(apiConfig) {
   // Instantiates a client
   const apigatewayClient = new ApiGatewayServiceClient();
 
-  async function callUpdateApiConfig() {
+  async function callDeleteApi() {
     // Construct request
     const request = {
-      apiConfig,
+      name,
     };
 
     // Run request
-    const [operation] = await apigatewayClient.updateApiConfig(request);
+    const [operation] = await apigatewayClient.deleteApi(request);
     const [response] = await operation.promise();
     console.log(response);
   }
 
-  callUpdateApiConfig();
-  // [END apigateway_v1_generated_ApiGatewayService_UpdateApiConfig_async]
+  callDeleteApi();
+  // [END apigateway_v1_generated_ApiGatewayService_DeleteApi_async]
 }
 
 process.on('unhandledRejection', err => {

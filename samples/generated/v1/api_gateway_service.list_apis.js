@@ -12,28 +12,34 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
 'use strict';
 
-function main(parent, gatewayId, gateway) {
-  // [START apigateway_v1_generated_ApiGatewayService_CreateGateway_async]
+function main(parent) {
+  // [START apigateway_v1_generated_ApiGatewayService_ListApis_async]
   /**
    * TODO(developer): Uncomment these variables before running the sample.
    */
   /**
-   *  Required. Parent resource of the Gateway, of the form:
-   *  `projects/* /locations/*`
+   *  Required. Parent resource of the API, of the form:
+   *  `projects/* /locations/global`
    */
   // const parent = 'abc123'
   /**
-   *  Required. Identifier to assign to the Gateway. Must be unique within scope of
-   *  the parent resource.
+   *  Page size.
    */
-  // const gatewayId = 'abc123'
+  // const pageSize = 1234
   /**
-   *  Required. Gateway resource.
+   *  Page token.
    */
-  // const gateway = {}
+  // const pageToken = 'abc123'
+  /**
+   *  Filter.
+   */
+  // const filter = 'abc123'
+  /**
+   *  Order by parameters.
+   */
+  // const orderBy = 'abc123'
 
   // Imports the Apigateway library
   const {ApiGatewayServiceClient} = require('@google-cloud/api-gateway').v1;
@@ -41,22 +47,21 @@ function main(parent, gatewayId, gateway) {
   // Instantiates a client
   const apigatewayClient = new ApiGatewayServiceClient();
 
-  async function callCreateGateway() {
+  async function callListApis() {
     // Construct request
     const request = {
       parent,
-      gatewayId,
-      gateway,
     };
 
     // Run request
-    const [operation] = await apigatewayClient.createGateway(request);
-    const [response] = await operation.promise();
-    console.log(response);
+    const iterable = await apigatewayClient.listApisAsync(request);
+    for await (const response of iterable) {
+      console.log(response);
+    }
   }
 
-  callCreateGateway();
-  // [END apigateway_v1_generated_ApiGatewayService_CreateGateway_async]
+  callListApis();
+  // [END apigateway_v1_generated_ApiGatewayService_ListApis_async]
 }
 
 process.on('unhandledRejection', err => {

@@ -12,26 +12,34 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
 'use strict';
 
-function main(api) {
-  // [START apigateway_v1_generated_ApiGatewayService_UpdateApi_async]
+function main(parent) {
+  // [START apigateway_v1_generated_ApiGatewayService_ListGateways_async]
   /**
    * TODO(developer): Uncomment these variables before running the sample.
    */
   /**
-   *  Field mask is used to specify the fields to be overwritten in the
-   *  Api resource by the update.
-   *  The fields specified in the update_mask are relative to the resource, not
-   *  the full request. A field will be overwritten if it is in the mask. If the
-   *  user does not provide a mask then all fields will be overwritten.
+   *  Required. Parent resource of the Gateway, of the form:
+   *  `projects/* /locations/*`
    */
-  // const updateMask = {}
+  // const parent = 'abc123'
   /**
-   *  Required. API resource.
+   *  Page size.
    */
-  // const api = {}
+  // const pageSize = 1234
+  /**
+   *  Page token.
+   */
+  // const pageToken = 'abc123'
+  /**
+   *  Filter.
+   */
+  // const filter = 'abc123'
+  /**
+   *  Order by parameters.
+   */
+  // const orderBy = 'abc123'
 
   // Imports the Apigateway library
   const {ApiGatewayServiceClient} = require('@google-cloud/api-gateway').v1;
@@ -39,20 +47,21 @@ function main(api) {
   // Instantiates a client
   const apigatewayClient = new ApiGatewayServiceClient();
 
-  async function callUpdateApi() {
+  async function callListGateways() {
     // Construct request
     const request = {
-      api,
+      parent,
     };
 
     // Run request
-    const [operation] = await apigatewayClient.updateApi(request);
-    const [response] = await operation.promise();
-    console.log(response);
+    const iterable = await apigatewayClient.listGatewaysAsync(request);
+    for await (const response of iterable) {
+      console.log(response);
+    }
   }
 
-  callUpdateApi();
-  // [END apigateway_v1_generated_ApiGatewayService_UpdateApi_async]
+  callListGateways();
+  // [END apigateway_v1_generated_ApiGatewayService_ListGateways_async]
 }
 
 process.on('unhandledRejection', err => {
