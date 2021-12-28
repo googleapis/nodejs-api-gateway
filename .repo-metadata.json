@@ -12,5 +12,5 @@
   "repo": "googleapis/nodejs-api-gateway",
   "default_version": "v1",
   "api_shortname": "api-gateway",
-  "library_type": ""
+  "library_type": "GAPIC_AUTO"
 }
